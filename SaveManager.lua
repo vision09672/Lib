@@ -47,6 +47,11 @@ do
             end,
             Load = function(idx, data)
                 if Options[idx] then 
+                    -- a theme that was taken out (Galaxy, God War) must not be selected again from an old config
+                    if idx == 'ThemeManager_ThemeList' and type(data.value) == 'string' and Options[idx].Values and not table.find(Options[idx].Values, data.value) then
+                        return
+                    end
+
                     Options[idx]:SetValue(data.value)
                 end
             end,
