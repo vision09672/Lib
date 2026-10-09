@@ -6258,7 +6258,7 @@ function RM:Fish(Spec)
 	for School = 0, math.ceil(Total / Per) - 1 do
 		local Dir = (School % 2 == 1) and -1 or 1;
 		local Y = Roll(Spec.Y or { 0.35, 0.7 });
-		local Dur = 1.3 / Roll({ 0.04, 0.07 });
+		local Dur = 1.3 / Roll(Spec.Speed or { 0.04, 0.07 });
 		local P0 = FXRandom:NextNumber();
 
 		for Slot = 0, Per - 1 do
@@ -6268,7 +6268,7 @@ function RM:Fish(Spec)
 			Made = Made + 1;
 
 			local Color = Colors[(School + Slot) % #Colors + 1];
-			local Size = Roll({ 20, 28 });
+			local Size = Roll(Spec.Size or { 20, 28 });
 			local FishY = Y + Roll({ -0.03, 0.03 });
 
 			local Mover = self:New('Frame', {
@@ -7093,6 +7093,40 @@ c 3
 d -216 -926 32 100
 c 3
 d -292 -986 32 100
+g cloudSideL
+c 3
+b -720 980 200 70 80 0
+b -820 930 100 70 80 0
+b -620 920 120 80 80 0
+c 2
+b -720 1030 180 30 30 0
+g cloudSideR
+c 3
+b 740 960 200 70 80 0
+b 640 910 100 70 80 0
+b 840 920 120 80 80 0
+c 2
+b 740 1010 180 30 30 0
+g cloud
+c 2
+b 0 1060 560 70 35 0
+c 3
+b 0 1000 580 120 97 0
+b -400 940 200 140 97 0
+b -160 890 220 160 97 0
+b 170 900 210 150 97 0
+b 420 950 190 130 97 0
+b -550 1000 140 90 97 0
+b 560 1000 140 90 97 0
+c 1
+e -400 940 200 140 6 28 0
+e -160 890 220 160 6 28 0
+e 170 900 210 150 6 28 0
+e 420 950 190 130 6 28 0
+g mist
+c 3
+b -300 1080 300 50 40 0
+b 250 1100 350 50 35 0
 g robe
 c 2
 f 100 0 -620 60 -610 100 -560 100 -440 70 -300 90 -160 160 60 260 340 350 620 430 880 320 940 220 890 120 950 0 910 -120 950 -220 890 -320 940 -430 880 -350 620 -260 340 -160 60 -90 -160 -70 -300 -100 -440 -100 -560 -60 -610
@@ -8121,484 +8155,6 @@ e -620 -100 20 20 8 70 0
 c 3
 e 200 960 18 18 8 70 0
 ]];
-Figures.God = [[
-g base
-g sunDisc
-c 4
-e 0 -580 400 400 14 80 0
-e 0 -580 330 330 8 50 0
-g sunRays
-c 4
-l 430 -580 620 -580 22 90
-c 1
-l 419 -484 507 -464 10 60
-c 4
-l 387 -393 559 -311 22 90
-c 1
-l 336 -312 407 -256 10 60
-c 4
-l 268 -244 387 -95 22 90
-c 1
-l 187 -193 226 -111 10 60
-c 4
-l 96 -161 138 24 22 90
-c 1
-l 0 -150 0 -60 10 60
-c 4
-l -96 -161 -138 24 22 90
-c 1
-l -187 -193 -226 -111 10 60
-c 4
-l -268 -244 -387 -95 22 90
-c 1
-l -336 -312 -407 -256 10 60
-c 4
-l -387 -393 -559 -311 22 90
-c 1
-l -419 -484 -507 -464 10 60
-c 4
-l -430 -580 -620 -580 22 90
-c 1
-l -419 -676 -507 -696 10 60
-c 4
-l -387 -767 -559 -849 22 90
-c 1
-l -336 -848 -407 -904 10 60
-c 4
-l -268 -916 -387 -1065 22 90
-c 1
-l -187 -967 -226 -1049 10 60
-c 4
-l -96 -999 -138 -1184 22 90
-c 1
-l 0 -1010 0 -1100 10 60
-c 4
-l 96 -999 138 -1184 22 90
-c 1
-l 187 -967 226 -1049 10 60
-c 4
-l 268 -916 387 -1065 22 90
-c 1
-l 336 -848 407 -904 10 60
-c 4
-l 387 -767 559 -849 22 90
-c 1
-l 419 -676 507 -696 10 60
-g cloakB
-c 2
-f 100 -780 80 -720 400 -620 620 -500 520 -420 660 -300 520 -200 200 -200 120
-c 1
-p 0 14 90 -780 100 -720 400 -620 620 -500 520 -420 660 -300 520 -200 200
-g cloakA
-c 2
-f 100 -220 -500 -460 -440 -700 -200 -780 100 -200 140 -200 200
-c 1
-p 0 14 90 -200 200 -220 -500 -460 -440 -700 -200 -780 100
-c 1
-p 0 8 50 -300 -400 -500 -100 -560 300
-p 0 8 40 -400 -380 -620 0 -640 400
-g legR
-c 2
-f 100 40 460 190 460 200 760 60 780
-c 1
-p 1 12 100 40 460 190 460 200 760 60 780
-c 2
-f 100 20 780 220 780 300 920 40 920
-c 1
-p 1 12 100 20 780 220 780 300 920 40 920
-c 3
-l 60 820 240 840 8 70
-l 60 870 260 880 8 70
-g legL
-c 2
-f 100 -40 460 -190 460 -200 760 -60 780
-c 1
-p 1 12 100 -40 460 -190 460 -200 760 -60 780
-c 2
-f 100 -20 780 -220 780 -300 920 -40 920
-c 1
-p 1 12 100 -20 780 -220 780 -300 920 -40 920
-c 3
-l -60 820 -240 840 8 70
-l -60 870 -260 880 8 70
-g skirt
-c 3
-f 100 0 -80 170 -80 240 160 300 460 180 540 80 480 0 520 -80 480 -180 540 -300 460 -240 160 -170 -80
-c 1
-p 1 14 90 0 -80 170 -80 240 160 300 460 180 540 80 480 0 520 -80 480 -180 540 -300 460 -240 160 -170 -80
-c 1
-p 0 8 50 0 -40 40 200 80 460
-p 0 8 50 100 -40 150 200 200 480
-p 0 8 50 -60 -40 -100 200 -140 480
-c 2
-f 100 -180 -120 180 -120 190 -40 -190 -40
-c 1
-p 1 12 100 -180 -120 180 -120 190 -40 -190 -40
-c 4
-d 0 -80 26 100
-g torso
-c 2
-f 100 0 -500 120 -500 260 -460 290 -360 220 -220 170 -100 0 -100 -170 -100 -220 -220 -290 -360 -260 -460 -120 -500
-c 1
-p 1 14 90 0 -500 120 -500 260 -460 290 -360 220 -220 170 -100 0 -100 -170 -100 -220 -220 -290 -360 -260 -460 -120 -500
-c 1
-p 0 10 70 -20 -460 -100 -380 -180 -360
-p 0 10 70 20 -460 100 -380 180 -360
-l 0 -360 0 -140 8 50
-l -80 -240 80 -240 8 50
-c 3
-f 100 -260 -480 -100 -500 220 -200 180 -100 -20 -140 -260 -400
-c 1
-p 1 12 90 -260 -480 -100 -500 220 -200 180 -100 -20 -140 -260 -400
-g armL
-c 2
-l -270 -440 -400 -220 90 100
-c 1
-p 0 10 80 -330 -460 -460 -220 -400 -100
-p 0 10 80 -200 -380 -340 -220
-g foreL
-c 2
-l -400 -220 -320 -20 80 100
-c 1
-p 0 10 80 -340 -220 -260 0
-p 0 10 80 -400 -100 -400 0
-c 2
-b -300 20 40 50 100 100
-c 1
-e -300 20 40 50 10 90 100
-g armR
-c 2
-l 270 -440 440 -580 90 100
-c 1
-p 0 10 80 300 -500 460 -660
-p 0 10 80 220 -400 400 -520
-g foreR
-c 2
-l 440 -580 500 -800 80 100
-c 1
-p 0 10 80 460 -660 550 -820
-p 0 10 80 400 -520 450 -780
-c 2
-b 500 -840 45 50 100 0
-c 1
-e 500 -840 45 50 10 90 0
-g bolt
-c 4
-f 100 500 -880 660 -920 560 -970 760 -1040 500 -980 580 -930 460 -930
-c 3
-p 0 10 90 500 -880 660 -920 560 -970 760 -1040
-g head
-c 3
-f 100 0 -760 70 -740 110 -680 120 -600 100 -540 60 -580 0 -600 -60 -580 -100 -540 -120 -600 -110 -680 -70 -740
-c 1
-p 1 10 70 0 -760 70 -740 110 -680 120 -600 100 -540 60 -580 0 -600 -60 -580 -100 -540 -120 -600 -110 -680 -70 -740
-c 2
-b 0 -650 65 75 100 0
-c 1
-e 0 -650 65 75 10 90 0
-c 1
-l -30 -660 -12 -665 8 90
-l 12 -665 30 -660 8 90
-l -40 -690 -10 -695 8 60
-l 10 -695 40 -690 8 60
-g beard
-c 3
-f 100 0 -580 50 -600 90 -560 90 -500 50 -400 0 -340 -50 -400 -90 -500 -90 -560 -50 -600
-c 1
-p 1 10 70 0 -580 50 -600 90 -560 90 -500 50 -400 0 -340 -50 -400 -90 -500 -90 -560 -50 -600
-g crown
-c 4
-l -87 -750 -165 -795 14 95
-c 4
-l -64 -777 -122 -846 14 95
-c 4
-l -34 -794 -65 -879 14 95
-c 4
-l 0 -800 0 -890 14 95
-c 4
-l 34 -794 65 -879 14 95
-c 4
-l 64 -777 122 -846 14 95
-c 4
-l 87 -750 165 -795 14 95
-]];
-Figures.Demon = [[
-g base
-g tail3
-c 1
-l 600 840 564 904 11 100
-c 1
-l 564 904 500 940 20 100
-c 1
-l 500 940 424 926 18 100
-c 1
-l 424 926 360 900 4 100
-c 2
-l 600 840 564 904 13 100
-c 2
-l 564 904 500 940 12 100
-c 2
-l 500 940 424 926 10 100
-c 2
-l 424 926 360 900 9 100
-c 2
-f 100 360 900 280 820 220 920 280 1000
-c 1
-p 1 12 100 360 900 280 820 220 920 280 1000
-g tail2
-c 1
-l 520 660 564 721 18 100
-c 1
-l 564 721 592 785 28 100
-c 1
-l 592 785 600 840 13 100
-c 2
-l 520 660 564 721 18 100
-c 2
-l 564 721 592 785 17 100
-c 2
-l 592 785 600 840 15 100
-g tail1
-c 1
-l 300 500 360 535 28 100
-c 1
-l 360 535 420 575 38 100
-c 1
-l 420 575 475 617 35 100
-c 1
-l 475 617 520 660 21 100
-c 2
-l 300 500 360 535 24 100
-c 2
-l 360 535 420 575 23 100
-c 2
-l 420 575 475 617 21 100
-c 2
-l 475 617 520 660 19 100
-g tail0
-c 1
-l 60 400 104 417 38 100
-c 1
-l 104 417 166 440 48 100
-c 1
-l 166 440 236 468 45 100
-c 1
-l 236 468 300 500 31 100
-c 2
-l 60 400 104 417 30 100
-c 2
-l 104 417 166 440 28 100
-c 2
-l 166 440 236 468 27 100
-c 2
-l 236 468 300 500 26 100
-g wingRo
-c 2
-f 100 520 -840 980 -660 840 -580 940 -320 780 -240 800 0 620 0 560 200
-c 1
-p 0 16 95 520 -840 980 -660 840 -580 940 -320 780 -240 800 0 620 0 560 200
-c 1
-l 520 -840 980 -660 16 90
-c 1
-l 520 -840 940 -320 16 90
-c 1
-l 520 -840 800 0 16 90
-c 1
-l 520 -840 560 200 16 90
-c 3
-d 520 -840 25 100
-c 4
-p 0 8 60 560 -500 780 -500
-g wingR
-c 2
-f 100 140 -460 520 -840 560 200 360 60 140 20
-c 1
-p 0 16 95 560 200 360 60 140 20 140 -460
-c 1
-l 140 -460 520 -840 30 100
-c 4
-p 0 8 60 300 -300 560 -500
-g wingLo
-c 2
-f 100 -520 -840 -980 -660 -840 -580 -940 -320 -780 -240 -800 0 -620 0 -560 200
-c 1
-p 0 16 95 -520 -840 -980 -660 -840 -580 -940 -320 -780 -240 -800 0 -620 0 -560 200
-c 1
-l -520 -840 -980 -660 16 90
-c 1
-l -520 -840 -940 -320 16 90
-c 1
-l -520 -840 -800 0 16 90
-c 1
-l -520 -840 -560 200 16 90
-c 3
-d -520 -840 25 100
-c 4
-p 0 8 60 -560 -500 -780 -500
-g wingL
-c 2
-f 100 -140 -460 -520 -840 -560 200 -360 60 -140 20
-c 1
-p 0 16 95 -560 200 -360 60 -140 20 -140 -460
-c 1
-l -140 -460 -520 -840 30 100
-c 4
-p 0 8 60 -300 -300 -560 -500
-g legR
-c 2
-f 100 40 200 200 220 260 420 200 520 100 440
-c 1
-p 1 12 100 40 200 200 220 260 420 200 520 100 440
-c 2
-f 100 120 460 240 500 200 780 100 780
-c 1
-p 1 12 100 120 460 240 500 200 780 100 780
-c 2
-f 100 80 780 220 780 300 920 280 970 60 950
-c 1
-p 1 12 100 80 780 220 780 300 920 280 970 60 950
-g legL
-c 2
-f 100 -40 200 -200 220 -260 420 -200 520 -100 440
-c 1
-p 1 12 100 -40 200 -200 220 -260 420 -200 520 -100 440
-c 2
-f 100 -120 460 -240 500 -200 780 -100 780
-c 1
-p 1 12 100 -120 460 -240 500 -200 780 -100 780
-c 2
-f 100 -80 780 -220 780 -300 920 -280 970 -60 950
-c 1
-p 1 12 100 -80 780 -220 780 -300 920 -280 970 -60 950
-g torso
-c 2
-f 100 -140 40 140 40 160 220 0 280 -160 220
-c 1
-p 1 12 100 -140 40 140 40 160 220 0 280 -160 220
-c 2
-f 100 0 -520 140 -520 260 -460 260 -360 200 -240 150 -80 140 40 0 40 -140 40 -150 -80 -200 -240 -260 -360 -260 -460 -140 -520
-c 1
-p 1 16 100 0 -520 140 -520 260 -460 260 -360 200 -240 150 -80 140 40 0 40 -140 40 -150 -80 -200 -240 -260 -360 -260 -460 -140 -520
-c 1
-p 0 10 60 -120 -360 0 -280 120 -360
-l 0 -460 0 0 8 45
-g rune
-c 4
-p 1 12 100 0 -400 60 -300 30 -220 0 -260 -30 -220 -60 -300
-g armL
-c 1
-l -260 -440 -460 -520 100 100
-c 2
-l -260 -440 -460 -520 74 100
-g foreL
-c 1
-l -460 -520 -520 -740 90 100
-c 2
-l -460 -520 -520 -740 64 100
-g claws
-c 3
-l -520 -760 -580 -820 14 100
-c 3
-l -520 -760 -520 -840 14 100
-c 3
-l -520 -760 -460 -820 14 100
-g armR
-c 1
-l 260 -440 420 -200 100 100
-c 2
-l 260 -440 420 -200 74 100
-g foreR
-c 1
-l 420 -200 360 0 90 100
-c 2
-l 420 -200 360 0 64 100
-c 2
-b 360 20 45 50 100 0
-c 1
-e 360 20 45 50 12 100 0
-g trident
-c 3
-l 380 960 380 -780 22 100
-c 1
-l 380 -700 380 -900 14 90
-c 3
-p 0 22 100 240 -900 240 -740 320 -680 440 -680 520 -740 520 -900
-c 4
-p 1 12 100 214 -840 240 -960 266 -840
-c 4
-p 1 12 100 354 -920 380 -1040 406 -920
-c 4
-p 1 12 100 494 -840 520 -960 546 -840
-g neck
-c 2
-f 100 -60 -600 60 -600 100 -520 -100 -520
-c 1
-p 1 12 100 -60 -600 60 -600 100 -520 -100 -520
-g hornR
-c 3
-l 70 -780 95 -794 50 100
-c 3
-l 95 -794 130 -814 42 100
-c 3
-l 130 -814 160 -840 34 100
-c 3
-l 160 -840 180 -874 26 100
-c 3
-l 180 -874 195 -913 18 100
-c 3
-l 195 -913 200 -950 10 100
-c 3
-l 200 -950 188 -985 4 100
-c 3
-l 188 -985 166 -1017 4 100
-c 3
-l 166 -1017 150 -1040 4 100
-g hornL
-c 3
-l -70 -780 -95 -794 50 100
-c 3
-l -95 -794 -130 -814 42 100
-c 3
-l -130 -814 -160 -840 34 100
-c 3
-l -160 -840 -180 -874 26 100
-c 3
-l -180 -874 -195 -913 18 100
-c 3
-l -195 -913 -200 -950 10 100
-c 3
-l -200 -950 -188 -985 4 100
-c 3
-l -188 -985 -166 -1017 4 100
-c 3
-l -166 -1017 -150 -1040 4 100
-g head
-c 2
-f 100 0 -840 60 -830 100 -780 100 -700 70 -640 30 -600 0 -600 -30 -600 -70 -640 -100 -700 -100 -780 -60 -830
-c 1
-p 1 14 100 0 -840 60 -830 100 -780 100 -700 70 -640 30 -600 0 -600 -30 -600 -70 -640 -100 -700 -100 -780 -60 -830
-c 3
-f 100 -30 -640 -12 -640 -20 -600
-f 100 30 -640 12 -640 20 -600
-c 1
-l -80 -780 -20 -750 10 90
-l 80 -780 20 -750 10 90
-g eyes
-c 4
-f 100 -75 -740 -20 -720 -30 -700 -80 -720
-f 100 75 -740 20 -720 30 -700 80 -720
-g embers
-c 4
-d -700 -200 18 90
-c 4
-d 800 400 18 90
-c 4
-d -500 600 18 90
-c 4
-d 100 -1000 18 90
-c 4
-d -840 -600 18 90
-]];
 Figures.Phoenix = [[
 g base
 g tailA_2
@@ -9334,219 +8890,6 @@ c 4
 b 500 700 25 45 90 300
 c 4
 b -520 760 25 45 90 -312
-]];
-Figures.Orion = [[
-g base
-g mass
-c 2
-b 0 -300 260 380 55 0
-c 2
-b -220 450 100 400 50 40
-b 240 470 100 400 50 -40
-c 2
-b 0 -800 90 100 60 0
-g dust
-c 3
-d 550 -95 8 70
-c 3
-d -472 315 12 70
-c 3
-d 64 -786 16 70
-c 3
-d 499 523 8 70
-c 3
-d -896 -245 12 70
-c 3
-d 464 -376 16 70
-c 3
-d -166 492 8 70
-c 3
-d -337 -711 12 70
-c 3
-d 771 171 16 70
-c 3
-d -841 236 8 70
-c 3
-d 232 -568 12 70
-c 3
-d 192 485 16 70
-c 3
-d -632 -442 8 70
-c 3
-d 801 -263 12 70
-c 3
-d -522 613 16 70
-c 3
-d -72 -613 8 70
-c 3
-d 490 295 12 70
-c 3
-d -729 -65 16 70
-g shinL
-c 1
-l -260 400 -320 800 12 90
-c 4
-d -320 800 34 100
-l -402 800 -238 800 6 80
-l -320 718 -320 882 6 80
-g legL
-c 1
-l -200 60 -260 400 12 90
-c 3
-d -260 400 22 100
-l -313 400 -207 400 6 80
-l -260 347 -260 453 6 80
-g shinR
-c 1
-l 240 420 300 840 12 90
-c 3
-d 300 840 34 100
-l 218 840 382 840 6 80
-l 300 758 300 922 6 80
-g legR
-c 1
-l 220 80 240 420 12 90
-c 3
-d 240 420 22 100
-l 187 420 293 420 6 80
-l 240 367 240 473 6 80
-g torso
-c 1
-l -280 -560 300 -540 12 90
-c 1
-l -280 -560 -100 -160 12 90
-c 1
-l 300 -540 100 -120 12 90
-c 1
-l -100 -160 0 -140 16 90
-c 1
-l 0 -140 100 -120 16 90
-c 1
-l -100 -160 -200 60 12 90
-c 1
-l 100 -120 220 80 12 90
-c 1
-l -200 60 220 80 12 90
-c 1
-l 0 -800 -280 -560 12 90
-c 1
-l 0 -800 300 -540 12 90
-c 3
-d -280 -560 34 100
-l -362 -560 -198 -560 6 80
-l -280 -642 -280 -478 6 80
-c 4
-d 300 -540 34 100
-l 218 -540 382 -540 6 80
-l 300 -622 300 -458 6 80
-c 3
-d -100 -160 28 100
-l -167 -160 -33 -160 6 80
-l -100 -227 -100 -93 6 80
-c 3
-d 0 -140 28 100
-l -67 -140 67 -140 6 80
-l 0 -207 0 -73 6 80
-c 3
-d 100 -120 28 100
-l 33 -120 167 -120 6 80
-l 100 -187 100 -53 6 80
-c 3
-d -200 60 22 100
-l -253 60 -147 60 6 80
-l -200 7 -200 113 6 80
-c 3
-d 220 80 22 100
-l 167 80 273 80 6 80
-l 220 27 220 133 6 80
-g sword
-c 1
-l -200 60 -220 20 8 60
-c 1
-l 220 80 140 0 8 60
-c 1
-l -220 20 -300 360 10 80
-c 3
-d -220 20 22 100
-l -273 20 -167 20 6 80
-l -220 -33 -220 73 6 80
-c 3
-d 140 0 22 100
-l 87 0 193 0 6 80
-l 140 -53 140 53 6 80
-g head
-c 3
-d 0 -800 34 100
-l -82 -800 82 -800 6 80
-l 0 -882 0 -718 6 80
-g foreL
-c 1
-l -500 -360 -620 -100 12 90
-c 3
-d -620 -100 22 100
-l -673 -100 -567 -100 6 80
-l -620 -153 -620 -47 6 80
-g bow
-c 1
-p 0 10 80 -412 383 -547 314 -661 215 -747 91 -802 -50 -820 -200 -802 -350 -747 -491 -661 -615 -547 -714
-l -412 383 -547 -714 6 50
-c 3
-d -412 383 26 100
-c 3
-d -547 314 16 100
-c 3
-d -661 215 16 100
-c 3
-d -747 91 26 100
-c 3
-d -802 -50 16 100
-c 3
-d -820 -200 16 100
-c 3
-d -802 -350 26 100
-c 3
-d -747 -491 16 100
-c 3
-d -661 -615 16 100
-c 3
-d -547 -714 26 100
-g armL
-c 1
-l -280 -560 -500 -360 12 90
-c 3
-d -500 -360 22 100
-l -553 -360 -447 -360 6 80
-l -500 -413 -500 -307 6 80
-g club
-c 1
-l 540 -980 600 -1030 50 90
-g foreR
-c 1
-l 500 -740 540 -980 12 90
-c 3
-d 540 -980 22 100
-l 487 -980 593 -980 6 80
-l 540 -1033 540 -927 6 80
-g armR
-c 1
-l 300 -540 500 -740 12 90
-c 3
-d 500 -740 22 100
-l 447 -740 553 -740 6 80
-l 500 -793 500 -687 6 80
-g glints
-c 3
-l -112 -800 112 -800 8 90
-l 0 -912 0 -688 8 90
-c 3
-l -408 -560 -152 -560 8 90
-l -280 -688 -280 -432 8 90
-c 4
-l 172 -540 428 -540 8 90
-l 300 -668 300 -412 8 90
-c 3
-l -96 -140 96 -140 8 90
-l 0 -236 0 -44 8 90
 ]];
 Figures.Reaper = [[
 g base
@@ -10696,6 +10039,120 @@ p 0 20 80 -120 80 0 200 120 80
 c 4
 f 100 0 -100 45 -40 0 20 -45 -40
 ]];
+Figures.ScaleBeam = [[
+c 1
+e 0 -300 100 100 20 100 0
+l 0 -200 0 0 20 100
+c 2
+l -900 0 900 0 50 100
+c 1
+l -900 0 900 0 22 100
+c 4
+d 0 0 60 100
+c 1
+e 0 0 60 60 12 100 0
+c 1
+d -900 0 45 100
+l -900 0 -900 80 20 100
+c 4
+d -900 0 18 100
+c 1
+d 900 0 45 100
+l 900 0 900 80 20 100
+c 4
+d 900 0 18 100
+c 3
+d 0 -420 30 100
+]];
+Figures.ScalePan = [[
+c 1
+l 0 0 -300 520 10 90
+l 0 0 300 520 10 90
+l 0 0 0 520 10 70
+c 2
+f 100 -340 520 340 520 280 620 140 700 0 720 -140 700 -280 620
+c 1
+p 1 18 100 -340 520 340 520 280 620 140 700 0 720 -140 700 -280 620
+c 3
+l -300 550 300 550 10 60
+c 4
+d 0 450 45 95
+]];
+Figures.HolyCross = [[
+c 4
+l 328 -262 618 -184 12 55
+c 4
+l 240 -110 368 18 12 35
+c 4
+l 88 -22 166 268 12 55
+c 4
+l -88 -22 -135 152 12 35
+c 4
+l -240 -110 -453 103 12 55
+c 4
+l -328 -262 -502 -215 12 35
+c 4
+l -328 -438 -618 -516 12 55
+c 4
+l -240 -590 -368 -718 12 35
+c 4
+l -88 -678 -166 -968 12 55
+c 4
+l 88 -678 135 -852 12 35
+c 4
+l 240 -590 453 -803 12 55
+c 4
+l 328 -438 502 -485 12 35
+c 2
+f 100 -70 -1000 70 -1000 70 1000 -70 1000
+f 100 -400 -450 400 -450 400 -270 -400 -270
+c 1
+p 1 16 100 -70 -1000 70 -1000 70 1000 -70 1000
+p 1 16 100 -400 -450 400 -450 400 -270 -400 -270
+c 3
+l 0 -950 0 900 10 50
+l -360 -360 360 -360 10 50
+c 1
+d 0 -1000 50 100
+c 4
+d 0 -1000 20 100
+c 1
+d 0 1000 50 100
+c 4
+d 0 1000 20 100
+c 1
+d -400 -360 50 100
+c 4
+d -400 -360 20 100
+c 1
+d 400 -360 50 100
+c 4
+d 400 -360 20 100
+c 1
+e 0 -360 120 120 14 100 0
+c 4
+d 0 -360 70 100
+]];
+Figures.HolyCloud = [[
+c 2
+b 0 180 800 70 30 0
+c 3
+b 0 50 900 200 96 0
+b -520 -50 300 240 96 0
+b -200 -200 340 280 96 0
+b 200 -160 320 260 96 0
+b 550 -20 280 200 96 0
+b -850 60 200 140 96 0
+b 880 80 200 140 96 0
+c 1
+e -520 -50 300 240 12 40 0
+e -200 -200 340 280 12 40 0
+e 200 -160 320 260 12 40 0
+e 550 -20 280 200 12 40 0
+c 4
+d -100 -250 30 90
+d 400 -120 22 80
+]];
 Figures.VanSword = [[
 c 2
 f 100 -40 -200 40 -200 36 -1860 0 -2000 -36 -1860
@@ -10974,6 +10431,10 @@ j wingRo wingR 100 -460 -164 -1200 1030 44
 j wingR torso 100 -460 -51 -1048 710 -131
 j wingLo wingL -100 -460 -1030 -1200 164 44
 j wingL torso -100 -460 -710 -1048 51 -131
+j cloudSideL base -700 980 -950 750 -470 1240
+j cloudSideR base 720 960 510 730 990 1220
+j cloud base 0 1000 -720 390 730 1650
+j mist base 0 1050 -630 720 630 1480
 j robe torso 0 -300 -467 -657 467 987
 j torso base 0 100 0 0 0 0
 j sleeveR torso 100 -560 44 -636 536 -124
@@ -10994,6 +10455,16 @@ i wingLo r -3200 440 140 10
 i wingLo r -9000 880 550 30
 i wingL r -2200 440 0 10
 i wingL r -5000 880 530 30
+i cloudSideL x 50 930 0 10
+i cloudSideL y 12 510 300 10
+i cloudSideL a 250 620 100 10
+i cloudSideR x -50 1110 400 10
+i cloudSideR y 12 570 600 10
+i cloudSideR a 250 730 500 10
+i cloud x 20 740 100 10
+i cloud y 12 440 300 10
+i mist x 80 810 200 10
+i mist a 500 530 0 10
 i robe r 1400 440 250 10
 i robe x 10 440 500 10
 i torso r 800 440 0 10
@@ -11014,6 +10485,7 @@ r wingRo 14000 6 0 0
 r wingR 8000 0 0 0
 r wingLo -14000 6 0 0
 r wingL -8000 0 0 0
+r cloud 0 0 0 20
 r robe 2000 10 0 0
 r torso -1500 4 0 12
 r sleeveR 11000 3 0 0
@@ -11217,152 +10689,6 @@ e 1 ring head 0 -40 4 1
 e 1 spark aR0_3 640 -560 4 6
 e 1 spark aL0_3 -640 -560 4 6
 ]];
-Rigs.God = [[
-j base - 0 900 0 0 0 0
-j sunDisc base 0 -580 -437 -1017 437 -143
-j sunRays base 0 -580 -661 -1225 661 65
-j cloakB cloakA -500 140 -817 46 -163 697
-j cloakA torso -240 -460 -817 -537 -163 434
-j legR base 120 460 -16 424 336 956
-j legL base -120 460 -336 424 16 956
-j skirt torso 0 -80 -337 -156 337 577
-j torso base 0 -100 -327 -537 327 -63
-j armL torso -270 -440 -495 -515 -165 -65
-j foreL armL -400 -220 -470 -290 -215 105
-j armR torso 270 -440 185 -695 515 -365
-j foreR armR 440 -580 365 -925 585 -485
-j bolt foreR 500 -860 426 -1075 795 -845
-j head torso 0 -520 -155 -795 155 -505
-j beard head 0 -580 -125 -635 125 -305
-j crown head 0 -700 -202 -927 202 -713
-i base y 10 520 0 10
-i sunDisc a 350 330 0 10
-i sunRays s 7000 100 0 10
-i cloakB r 5000 370 250 10
-i cloakA r 2400 430 0 10
-i legR r 400 560 0 10
-i legL r 400 560 500 10
-i skirt r 1200 490 100 10
-i skirt x 8 490 350 10
-i torso r 800 460 0 10
-i torso y 10 460 250 10
-i armL r 1600 440 300 10
-i foreL r 2400 440 400 10
-i foreL r 16000 870 620 40
-i armR r 1400 400 150 10
-i foreR r 2200 400 300 10
-i bolt r 3500 260 0 10
-i bolt r 10000 610 200 60
-i bolt a 450 80 0 10
-i bolt a 250 37 400 10
-i head r 1100 520 300 10
-i beard r 3000 390 0 10
-i crown a 400 250 0 10
-k sunDisc 0 0 -12 -8
-k sunRays 0 0 -12 -8
-k torso 1800 0 8 0
-k head 6000 3500 10 6
-r sunRays 14000 0 0 0
-r cloakB 9000 14 0 0
-r cloakA 4000 8 0 0
-r torso -2400 5 0 18
-r armL -5000 4 0 0
-r foreL -10000 10 0 0
-r armR -12000 0 0 0
-r foreR -20000 5 0 0
-r bolt 28000 10 0 0
-r head 4000 12 0 0
-r beard 6000 18 0 0
-r crown 0 0 0 -20
-e 1 ring sunDisc 0 -580 4 1
-e 1 streak bolt 700 -1000 4 10
-e 0 spark bolt 700 -1000 4 4
-e 1 spark crown 0 -800 3 8
-]];
-Rigs.Demon = [[
-j base - 0 900 0 0 0 0
-j tail3 tail2 600 840 184 784 637 1036
-j tail2 tail1 520 660 481 621 638 878
-j tail1 tail0 300 500 256 456 561 701
-j tail0 torso 60 400 11 351 346 546
-j wingRo wingR 520 -840 465 -895 1018 238
-j wingR torso 140 -460 95 -885 598 238
-j wingLo wingL -520 -840 -1018 -895 -465 238
-j wingL torso -140 -460 -598 -885 -95 238
-j legR base 100 200 4 164 336 1006
-j legL base -100 200 -336 164 -4 1006
-j torso base 0 40 -298 -558 298 316
-j rune torso 0 -300 -96 -436 96 -184
-j armL torso -260 -440 -540 -600 -180 -360
-j foreL armL -460 -520 -595 -815 -385 -445
-j claws foreL -520 -760 -617 -877 -423 -723
-j armR torso 260 -440 180 -520 500 -120
-j foreR armR 420 -200 274 -275 495 106
-j trident foreR 370 20 178 -1076 582 1001
-j neck torso 0 -520 -136 -636 136 -484
-j hornR head 70 -780 15 -1072 235 -725
-j hornL head -70 -780 -235 -1072 -15 -725
-j head torso 0 -560 -137 -877 137 -563
-j eyes head 0 -720 -114 -774 114 -666
-j embers base 0 0 -888 -1048 848 648
-i base y 10 480 300 10
-i tail3 r 10000 360 -390 10
-i tail2 r 8000 360 -260 10
-i tail1 r 6000 360 -130 10
-i tail0 r 4000 360 0 10
-i wingRo r 6000 520 160 10
-i wingR r 4000 520 0 10
-i wingR r -10000 940 300 30
-i wingLo r -6000 520 160 10
-i wingL r -4000 520 0 10
-i wingL r 10000 940 340 30
-i legR r 500 510 0 10
-i legL r 500 510 500 10
-i torso r 900 440 0 10
-i torso y 12 440 250 10
-i rune a 550 190 0 10
-i rune a 250 70 300 10
-i armL r 2000 400 200 10
-i foreL r 3000 400 350 10
-i claws r 7000 240 0 10
-i claws r -16000 630 500 40
-i armR r 1600 460 100 10
-i foreR r 2000 460 250 10
-i trident r 1400 500 200 10
-i trident r 7000 860 700 40
-i hornR r 1600 380 0 10
-i hornL r -1600 380 500 10
-i head r 1200 490 400 10
-i eyes a 500 170 0 10
-i eyes a 300 63 200 10
-i embers y -80 620 0 10
-i embers a 600 220 300 10
-k torso 2000 0 8 0
-k head 6500 4000 12 8
-k eyes 0 0 18 10
-r tail3 15000 18 0 0
-r tail2 12000 12 0 0
-r tail1 9000 6 0 0
-r tail0 6000 0 0 0
-r wingRo -22000 7 0 0
-r wingR -14000 0 0 0
-r wingLo 22000 7 0 0
-r wingL 14000 0 0 0
-r torso -2600 5 0 20
-r armL 8000 3 0 0
-r foreL 14000 8 0 0
-r claws -18000 12 0 0
-r armR -6000 2 0 0
-r foreR -8000 6 0 0
-r trident 13000 10 0 0
-r hornR 6000 14 0 0
-r hornL -6000 14 0 0
-r head 4000 10 0 0
-e 1 ring rune 0 -300 4 1
-e 1 streak trident 380 -980 4 9
-e 0 spark trident 380 -980 4 4
-e 1 spark eyes 0 -720 4 5
-]];
 Rigs.Phoenix = [[
 j base - 0 400 0 0 0 0
 j tailA_2 tailA_1 -100 700 -148 652 36 1036
@@ -11545,66 +10871,6 @@ e 1 petal branchR 660 -760 4 8
 e 0 petal branchR 660 -760 4 3
 e 1 spark tail4 0 -400 3 8
 e 1 ring head 0 -200 4 1
-]];
-Rigs.Orion = [[
-j base - 0 800 0 0 0 0
-j mass torso 0 -200 -650 -930 670 900
-j dust base 0 -100 -938 -832 843 659
-j shinL legL -260 400 -435 364 -205 915
-j legL torso -200 60 -346 24 -164 486
-j shinR legR 240 420 185 384 415 955
-j legR torso 220 80 154 44 326 506
-j torso base 0 60 -395 -836 415 166
-j sword torso -220 20 -335 -86 254 395
-j head torso 0 -700 -115 -915 115 -685
-j foreL armL -500 -360 -706 -396 -464 -14
-j bow foreL -620 -100 -866 -770 -356 439
-j armL torso -280 -560 -586 -596 -244 -274
-j club foreR 540 -980 485 -1085 655 -925
-j foreR armR 500 -740 454 -1066 626 -704
-j armR torso 300 -540 264 -826 586 -504
-j glints torso 0 -500 -442 -946 462 -10
-i base y 12 530 0 10
-i base x 8 790 400 10
-i mass a 300 510 0 10
-i dust s 2200 100 0 10
-i dust a 500 360 200 10
-i shinL r 1800 570 0 10
-i legL r -1200 610 0 10
-i shinR r -1800 570 200 10
-i legR r 1200 610 300 10
-i torso r 700 530 0 10
-i sword r 2600 410 0 10
-i head r 1400 580 200 10
-i foreL r 2400 510 300 10
-i bow r 2000 660 0 10
-i bow r -7000 930 600 40
-i armL r 1400 540 150 10
-i club r 3000 470 400 10
-i club r 13000 830 100 50
-i foreR r 2200 490 500 10
-i armR r 1500 520 100 10
-i glints a 950 230 0 10
-i glints a 300 90 500 10
-k torso 1600 0 7 0
-k head 6000 4000 10 6
-r shinL -5000 8 0 0
-r legL 3000 3 0 0
-r shinR 5000 8 0 0
-r legR -3000 3 0 0
-r torso -1800 4 0 12
-r sword 8000 10 0 0
-r head 3000 8 0 0
-r foreL -8000 6 0 0
-r bow -10000 10 0 0
-r armL -5000 2 0 0
-r club 26000 10 0 0
-r foreR -14000 5 0 0
-r armR -9000 0 0 0
-e 1 streak club 600 -1030 4 9
-e 0 spark club 600 -1030 3 4
-e 1 spark bow -800 -200 3 8
-e 1 ring torso 0 -140 4 1
 ]];
 Rigs.Reaper = [[
 j base - 0 900 0 0 0 0
@@ -12945,60 +12211,34 @@ function RM:Jelly(Spec)
 		self:Sway(Pivot, { Rotation = { -12, 12 } }, Roll({ 1.2, 2.2 }), LayerName);
 	end;
 
-	self:Sway(Root, { Position = { Pos, Pos - UDim2.fromOffset(0, Size * 0.35) } }, Roll({ 1.6, 2.4 }), LayerName);
+	-- it swims the way jellyfish do: the bell squeezes and pushes it up quickly, then it sinks slowly while it drifts sideways on a long path;
+	-- every one has its own rhythm. The path is scripted (a tick), the tentacles sway on their own (tweens)
+	local Phase, Speed, Phase2 = FXRandom:NextNumber(), Roll({ 0.16, 0.23 }), FXRandom:NextNumber() * 2 * math.pi;
+	local W1, W2 = Roll({ 0.07, 0.11 }) * 2 * math.pi, Roll({ 0.05, 0.09 }) * 2 * math.pi;
+	local AX, AY, Bob = Size * Roll({ 0.5, 1 }), Size * 0.25, Size * 0.55;
+
+	self:Tick(function(T)
+		local P = (T * Speed + Phase) % 1;
+		local Up, Squeeze = 0, 0;
+
+		if P < 0.3 then
+			local K = P / 0.3;
+			Up = K * K * (3 - 2 * K);
+			Squeeze = math.sin(K * math.pi);
+		else
+			local K = (P - 0.3) / 0.7;
+			Up = 1 - K * K * (3 - 2 * K);
+		end;
+
+		Root.Position = Pos + UDim2.fromOffset(AX * math.sin(T * W1 + Phase2), AY * math.sin(T * W2) - Bob * Up);
+		Bell.Size = UDim2.fromOffset(Size * (1 - 0.15 * Squeeze), Size * 0.62 * (1 + 0.1 * Squeeze));
+	end, LayerName);
+
 	self:Sway(Halo, { BackgroundTransparency = { 0.8, 0.92 } }, Roll({ 0.9, 1.6 }), LayerName);
 end;
 
 
 -- ---------------------------------------------------------------- decoration builders (frames only, no assets)
--- ship's wheel: ring + 4 crossing spokes + 8 handles + hub. UseCanvas = a CanvasGroup so it can fade as one piece.
-local function BuildWheel(Parent, Size, Color, Z, Alpha, UseCanvas)
-	local Props = {
-		AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; BorderSizePixel = 0;
-		Size = UDim2.fromOffset(Size, Size); ZIndex = Z; Parent = Parent;
-	};
-	local C = UseCanvas and Library:CreateCanvas(Props) or Library:Create('Frame', Props);
-
-	local D = 0.86; -- wheel diameter inside the container, leaves room for the handles
-	local Ring = Library:Create('Frame', {
-		AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; BorderSizePixel = 0;
-		Position = UDim2.fromScale(0.5, 0.5); Size = UDim2.fromScale(D * 0.8, D * 0.8); ZIndex = Z; Parent = C;
-	});
-	Round(Ring, 0.5, 0);
-
-	local Stroke = Instance.new('UIStroke');
-	Stroke.Color = Color;
-	Stroke.Thickness = math.max(2, Size * 0.055);
-	Stroke.Transparency = Alpha;
-	Stroke.Parent = Ring;
-
-	for I = 0, 3 do
-		local Spoke = Library:Create('Frame', {
-			AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color; BackgroundTransparency = Alpha; BorderSizePixel = 0;
-			Position = UDim2.fromScale(0.5, 0.5); Rotation = I * 45; Size = UDim2.new(D, 0, 0, math.max(2, Size * 0.04));
-			ZIndex = Z; Parent = C;
-		});
-		Round(Spoke, 0.5, 0);
-	end;
-
-	local Hub = Library:Create('Frame', {
-		AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color; BackgroundTransparency = Alpha; BorderSizePixel = 0;
-		Position = UDim2.fromScale(0.5, 0.5); Size = UDim2.fromScale(0.2, 0.2); ZIndex = Z; Parent = C;
-	});
-	Round(Hub, 0.5, 0);
-
-	for I = 0, 7 do
-		local A = math.rad(I * 45);
-		local Handle = Library:Create('Frame', {
-			AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color; BackgroundTransparency = Alpha; BorderSizePixel = 0;
-			Position = UDim2.fromScale(0.5 + 0.5 * D * math.cos(A), 0.5 + 0.5 * D * math.sin(A));
-			Size = UDim2.fromOffset(Size * 0.09, Size * 0.09); ZIndex = Z; Parent = C;
-		});
-		Round(Handle, 0.5, 0);
-	end;
-
-	return C;
-end;
 
 local function BuildAnchor(Parent, Size, Color, Z, Alpha)
 	local C = Library:Create('Frame', {
@@ -13073,17 +12313,14 @@ end;
 -- [[rig:defs]]
 -- the hero of each scene: figure, its four colours, where it stands (window fractions), how big it is and how solid (the store preview uses the same numbers)
 local HeroDefs = {
-	Vanguard = { Fig = 'Guardian'; Pal = { RGB(255, 92, 98), RGB(122, 14, 28), RGB(255, 190, 180), RGB(255, 240, 220) }; At = { 0.69, 0.54 }; Size = 1.12; Alpha = 0.86; };
+	Vanguard = { Fig = 'Guardian'; Pal = { RGB(255, 92, 98), RGB(122, 14, 28), RGB(255, 190, 180), RGB(255, 240, 220) }; At = { 0.7, 0.5 }; Size = 1; Alpha = 0.86; };
 	Void = { Fig = 'Reaper'; Pal = { RGB(176, 150, 255), RGB(20, 10, 44), RGB(218, 206, 255), RGB(170, 255, 225) }; At = { 0.64, 0.52 }; Size = 1; Alpha = 0.8; };
 	Ocean = { Fig = 'Ship'; Pal = { RGB(170, 232, 255), RGB(12, 70, 118), RGB(255, 255, 255), RGB(255, 220, 120) }; At = { 0.6, 0.52 }; Size = 1; Alpha = 0.8; };
 	Sakura = { Fig = 'Kitsune'; Pal = { RGB(255, 190, 220), RGB(134, 46, 100), RGB(255, 242, 248), RGB(255, 120, 160) }; At = { 0.72, 0.56 }; Size = 1; Alpha = 0.8; };
-	Galaxy = { Fig = 'Orion'; Pal = { RGB(210, 190, 255), RGB(38, 24, 96), RGB(255, 255, 255), RGB(120, 240, 255) }; At = { 0.64, 0.5 }; Size = 1; Alpha = 0.8; };
-	Heaven = { Fig = 'Angel'; Pal = { RGB(255, 244, 210), RGB(104, 130, 214), RGB(255, 255, 255), RGB(255, 225, 130) }; At = { 0.62, 0.5 }; Size = 1; Alpha = 0.82; };
+	Heaven = { Fig = 'Angel'; Pal = { RGB(255, 244, 210), RGB(104, 130, 214), RGB(255, 255, 255), RGB(255, 225, 130) }; At = { 0.62, 0.5 }; Size = 0.96; Alpha = 0.82; };
 	Cyber = { Fig = 'Mecha'; Pal = { RGB(0, 229, 255), RGB(10, 28, 56), RGB(170, 250, 255), RGB(255, 43, 214) }; At = { 0.68, 0.56 }; Size = 1; Alpha = 0.8; };
 	Inferno = { Fig = 'Phoenix'; Pal = { RGB(255, 160, 50), RGB(138, 28, 8), RGB(255, 232, 130), RGB(255, 255, 205) }; At = { 0.62, 0.52 }; Size = 1.02; Alpha = 0.8; };
 	['Deep Sea'] = { Fig = 'Kraken'; Pal = { RGB(60, 255, 215), RGB(6, 50, 72), RGB(175, 255, 240), RGB(255, 90, 190) }; At = { 0.6, 0.5 }; Size = 1.16; Alpha = 0.84; };
-	God = { Fig = 'God'; Pal = { RGB(255, 214, 110), RGB(128, 82, 28), RGB(255, 248, 210), RGB(255, 255, 255) }; At = { 0.32, 0.54 }; Size = 1.02; Alpha = 0.86; };
-	Demon = { Fig = 'Demon'; Pal = { RGB(255, 96, 64), RGB(64, 10, 16), RGB(255, 160, 120), RGB(255, 230, 120) }; At = { 0.78, 0.54 }; Size = 1.02; Alpha = 0.86; };
 };
 
 local function HeroOf(Name)
@@ -13323,7 +12560,7 @@ FX:RegisterScene({
 });
 
 FX:RegisterScene({
-	Name = 'Ocean'; Category = 'Nature'; Weight = 'Balanced'; Transition = 'Wheel'; PanelAlpha = 0.34;
+	Name = 'Ocean'; Category = 'Nature'; Weight = 'Balanced'; Transition = 'Ripple'; PanelAlpha = 0.34;
 	Description = 'Underwater: a galleon, a passing whale, caustics, surface waves, light shafts, fish, kelp, bubbles';
 	Build = function(R)
 		R:Gradient({
@@ -13350,6 +12587,7 @@ FX:RegisterScene({
 		});
 
 		R:Fish({ Layer = 'Decor'; Count = 12; Per = 4; Y = { 0.35, 0.7 }; Colors = { RGB(255, 170, 60), RGB(120, 235, 255), RGB(255, 215, 90) }; Alpha = 0.22; });
+		R:Fish({ Layer = 'Decor'; Count = 8; Per = 4; Y = { 0.22, 0.86 }; Size = { 11, 16 }; Speed = { 0.024, 0.044 }; Colors = { RGB(200, 245, 255), RGB(255, 200, 120) }; Alpha = 0.4; }); -- a few smaller, slower ones
 		R:Kelp({ Layer = 'Decor'; Count = 12; Height = { 70, 140 }; Color = RGB(10, 110, 70); Tip = RGB(90, 230, 150); });
 
 		local Anchor = BuildAnchor(R.Layers.Decor, 90, RGB(170, 225, 255), R.Z, 0.8);
@@ -13366,13 +12604,9 @@ FX:RegisterScene({
 		});
 	end;
 
-	-- a ship's wheel peeking over the top edge, coral under the bottom corners, a bubble stream
+	-- coral under the bottom corners, a bubble stream
 	Accessory = function(A)
 		local S = A.Scale;
-		local Wheel = A:Art('Ocean', { RGB(170, 232, 255), RGB(170, 232, 255), RGB(170, 232, 255), RGB(170, 232, 255) }, UDim2.new(0.5, 0, 0, 6), 50 * S, { Back = true; });
-		if Wheel then
-			A.BackR:Cycle(Wheel, { Rotation = { 0, 360 } }, 40, 'Decor', 0);
-		end;
 
 		for _, C in ipairs({ { 0, 6, RGB(255, 120, 150) }, { 1, -80, RGB(255, 170, 90) } }) do
 			for I = 0, 4 do
@@ -13502,110 +12736,8 @@ FX:RegisterScene({
 });
 
 FX:RegisterScene({
-	Name = 'Galaxy'; Category = 'Space'; Weight = 'Balanced'; Transition = 'Warp'; PanelAlpha = 0.34;
-	Description = 'Orion the hunter in the Milky Way, drifting nebulae, stars, a ringed planet, shooting stars and meteors';
-	Build = function(R)
-		R:Gradient({
-			Layer = 'Base'; Rotation = 125; Drift = 0.12; DriftAmount = 0.15;
-			Colors = Seq(RGB(10, 4, 34), RGB(46, 12, 104), RGB(14, 6, 50));
-		});
-
-		R:Band({ X = 0.5; Y = 0.45; Width = 1100; Height = 200; Rotation = -24; Color = RGB(200, 170, 255); Alpha = 0.28; });
-
-		R:Glow({ Layer = 'Atmosphere'; Color = RGB(220, 60, 255); Size = 420; X = 0.22; Y = 0.3; Alpha = 0.94; Rings = 12; Pulse = { 0.4, 0.08 }; Drift = { 0.05, 0.04, 0.12 }; });
-		R:Glow({ Layer = 'Atmosphere'; Color = RGB(60, 110, 255); Size = 460; X = 0.8; Y = 0.7; Alpha = 0.94; Rings = 12; Pulse = { 0.35, 0.08 }; Drift = { 0.04, 0.05, 0.1 }; });
-		R:Glow({ Layer = 'Atmosphere'; Color = RGB(40, 220, 255); Size = 320; X = 0.55; Y = 0.15; Alpha = 0.955; Rings = 10; Pulse = { 0.5, 0.1 }; Drift = { 0.05, 0.03, 0.14 }; });
-
-		R:Hero(HeroOf('Galaxy'));
-
-		R:Emitter({
-			Layer = 'Decor'; Shape = 'Circle'; Count = 80; Size = { 1, 3 }; Static = true; Alpha = { 0.2, 0.75 };
-			Twinkle = 0.85; Colors = { RGB(255, 255, 255), RGB(210, 200, 255), RGB(255, 225, 200) };
-		});
-
-		-- ringed planet with a soft glow
-		R:Glow({ Layer = 'Decor'; Color = RGB(170, 120, 255); Size = 220; X = 0.86; Y = 0.8; Alpha = 0.95; Pulse = { 0.6, 0.06 }; });
-
-		local Planet = R:New('Frame', {
-			AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color3.new(1, 1, 1);
-			Position = UDim2.fromScale(0.86, 0.8); Size = UDim2.fromOffset(78, 78);
-		}, R.Layers.Decor);
-		Round(Planet, 0.5, 0);
-		R:New('UIGradient', { Rotation = 40; Color = Seq(RGB(217, 184, 255), RGB(122, 76, 240), RGB(42, 18, 128)); }, Planet);
-
-		local Ring = R:New('Frame', {
-			AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1;
-			Position = UDim2.fromScale(0.86, 0.8); Rotation = -20; Size = UDim2.fromOffset(148, 32);
-		}, R.Layers.Decor);
-		Round(Ring, 0.5, 0);
-		local RingStroke = Instance.new('UIStroke');
-		RingStroke.Color = RGB(225, 200, 255);
-		RingStroke.Thickness = 3;
-		RingStroke.Transparency = 0.25;
-		RingStroke.Parent = Ring;
-		R:Sway(Ring, { Rotation = { -22, -18 } }, 6, 'Decor');
-
-		R:Emitter({ -- slow cosmic dust
-			Shape = 'Circle'; Count = 24; Size = { 1, 2.5 }; Vx = { -0.012, 0.012 }; Vy = { -0.012, 0.012 };
-			Alpha = { 0.3, 0.7 }; Twinkle = 0.6; Colors = { RGB(255, 255, 255), RGB(200, 180, 255) };
-		});
-
-		ShootingStars(R);
-		R:Meteors({ Layer = 'Lighting'; Count = 3; Color = RGB(200, 190, 255); Angle = 28; });
-	end;
-
-	-- small planets circling the corners, a ringed planet on the top right, a comet along the top
-	Accessory = function(A)
-		local R, S = A.R, A.Scale;
-
-		local function Orbit(Corner, RX, RY, Size, Color, Secs, Tilt)
-			local Center = A:Pivot(A.Front, Corner, Tilt);
-			local Path = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; Size = UDim2.fromOffset(RX * 2 * S, RY * 2 * S); }, Center);
-			Round(Path, 0.5, 0);
-			local Stroke = Instance.new('UIStroke');
-			Stroke.Color = Color; Stroke.Thickness = 1; Stroke.Transparency = 0.7; Stroke.Parent = Path;
-
-			local Arm = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; Size = UDim2.fromOffset(0, 0); }, Center);
-			local Ball = R:New('Frame', {
-				AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color3.new(1, 1, 1); Position = UDim2.fromOffset(RX * S, 0); Size = UDim2.fromOffset(Size * S, Size * S);
-			}, Arm);
-			Round(Ball, 0.5, 0);
-			R:New('UIGradient', { Rotation = 45; Color = Seq(RGB(255, 255, 255), Color, RGB(30, 14, 70)); }, Ball);
-			R:Cycle(Arm, { Rotation = { 0, 360 } }, Secs, 'Decor');
-			return Arm;
-		end;
-
-		Orbit(UDim2.new(0, 14, 0, 8), 62, 22, 14, RGB(255, 170, 230), 11, -18);
-		Orbit(UDim2.new(1, -14, 1, -8), 70, 24, 18, RGB(120, 200, 255), 15, -22);
-
-		-- the ringed planet
-		local Piv = A:Pivot(A.Front, UDim2.new(1, -2, 0, -6), 0);
-		local Globe = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color3.new(1, 1, 1); Size = UDim2.fromOffset(52 * S, 52 * S); }, Piv);
-		Round(Globe, 0.5, 0);
-		R:New('UIGradient', { Rotation = 40; Color = Seq(RGB(226, 196, 255), RGB(122, 76, 240), RGB(42, 18, 128)); }, Globe);
-		local Band = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; Position = UDim2.fromOffset(0, 8); Rotation = -18; Size = UDim2.fromOffset(92 * S, 16 * S); }, Piv);
-		Round(Band, 0.5, 0);
-		local BandStroke = Instance.new('UIStroke');
-		BandStroke.Color = RGB(232, 208, 255); BandStroke.Thickness = 3; BandStroke.Transparency = 0.2; BandStroke.Parent = Band;
-		R:Sway(Band, { Rotation = { -22, -14 } }, 5, 'Decor');
-		R:Sway(Piv, { Position = { Piv.Position, Piv.Position - UDim2.fromOffset(0, 6) } }, 3.6, 'Decor');
-
-		-- the comet
-		local Comet = R:New('Frame', { AnchorPoint = Vector2.new(1, 0.5); BackgroundColor3 = Color3.new(1, 1, 1); Rotation = 8; Size = UDim2.fromOffset(90, 3); }, A.Front);
-		Round(Comet, 0.5, 0);
-		R:New('UIGradient', { Transparency = NS(0, 1, 1, 0); }, Comet);
-		R:Cycle(Comet, { Position = { UDim2.new(0, -120, 0, -18), UDim2.new(1, 120, 0, 12) } }, 6.5, 'Decor');
-
-		R:Emitter({
-			Layer = 'Decor'; Shape = 'Diamond'; Count = 10; Size = { 3, 6 }; Static = true; Alpha = { 0.3, 0.8 }; Twinkle = 0.8;
-			Spawn = { X = { -0.02, 1.02 }; Y = { -0.09, -0.01 } }; Colors = { RGB(210, 200, 255) };
-		});
-	end;
-});
-
-FX:RegisterScene({
 	Name = 'Heaven'; Category = 'Fantasy'; Weight = 'Beautiful'; Transition = 'Light'; Pixel = true; PanelAlpha = 0.3;
-	Description = 'An angel in the sky: layered clouds, light rays, a halo sun, falling feathers, curved wings and a fairy around the window';
+	Description = 'An angel standing on a holy cloud in the sky: layered clouds, light rays, a halo sun, falling feathers, a celestial scale, a crucifix and holy clouds around the window';
 	Build = function(R)
 		R:Gradient({
 			Layer = 'Base'; Rotation = 90; Drift = 0.12; DriftAmount = 0.1;
@@ -13635,144 +12767,52 @@ FX:RegisterScene({
 		});
 	end;
 
-	-- Curved wings wrap around the top corners and bend in toward the window, a fairy sits on the top edge. Wings and fairy are
-	-- springs: drag the window and they swing with it, overshoot and settle (see Accessories:Spring).
+	-- a celestial scale over the top edge (the beam and the two pans swing together), a crucifix and a holy cloud at the top corners, holy clouds under
+	-- the bottom corners. Gold and white, everything slow. Pieces sit behind the window, so they never cover the menu.
 	Accessory = function(A)
-		local B, R, S = A.BackR, A.R, A.Scale;
-		local W = A.Size.X;
-		local RootX, RootY = 8, 120;
+		local B, S = A.BackR, A.Scale;
+		local Pal = { RGB(255, 236, 170), RGB(176, 150, 70), RGB(255, 252, 236), RGB(255, 225, 130) };
 
-		-- one feather: a leaf along a centre line that bends back toward the window; also returns the centre line for drawing
-		local function FeatherGeo(Len, Bend, Wid, Curve)
-			local N = 14;
-			local Left, Right, Centers = {}, {}, {};
-			local X, Y = 0, 0;
-
-			for I = 0, N do
-				local T = I / N;
-				local Hd = math.rad(Curve * Bend * T ^ 1.4);
-				if I > 0 then
-					X = X + math.cos(Hd) * Len / N;
-					Y = Y + math.sin(Hd) * Len / N;
-				end;
-
-				local Wd = Wid * (0.32 + 0.68 * math.max(math.sin(math.pi * T ^ 0.72), 0) ^ 0.9) * (T > 0.96 and 0.35 or 1);
-				Left[#Left + 1] = { X - math.sin(Hd) * Wd, Y + math.cos(Hd) * Wd };
-				Right[#Right + 1] = { X + math.sin(Hd) * Wd, Y - math.cos(Hd) * Wd };
-				Centers[#Centers + 1] = { X, Y, Hd, Wd };
-			end;
-
-			for I = #Right, 1, -1 do
-				Left[#Left + 1] = Right[I];
-			end;
-
-			return Left, Centers;
+		-- the scale: one slow rock, the pans rise and fall against the beam and tilt a little
+		local U, By, Half = 48 * S, -38 * S, 3.4;
+		local Beam = A:Art('ScaleBeam', Pal, UDim2.new(0.5, 0, 0, By), U, { Back = true; View = { -1.1, -0.55, 2.2, 0.75 }; });
+		if Beam then
+			Beam.Rotation = -4;
+			B:Tween(Beam, { Rotation = 4 }, Half, Enum.EasingStyle.Sine, EInOut, 'Decor', -1, true);
 		end;
 
-		-- the longest feather (and the least bend) that stays inside the room around the window
-		local function Fit(RX, Theta, LenK, Wid, Curve)
-			local C, Sn = math.cos(math.rad(Theta)), math.sin(math.rad(Theta));
-
-			for K = 0, 7 do
-				local Len = LenK * (1 - K * 0.07);
-
-				for Bend = 30, 150, 10 do
-					local Pts, Centers = FeatherGeo(Len, Bend, Wid, Curve);
-					local Ok = true;
-
-					for _, P in ipairs(Pts) do
-						local X, Y = RX + P[1] * C - P[2] * Sn, RootY + P[1] * Sn + P[2] * C;
-						if X > W + 90 or X < -90 or Y < -90 then
-							Ok = false;
-							break;
-						end;
-					end;
-
-					if Ok then
-						return Pts, Centers, Len;
-					end;
-				end;
-			end;
-
-			local Pts, Centers = FeatherGeo(LenK * 0.5, 90, Wid, Curve);
-			return Pts, Centers, LenK * 0.5;
-		end;
-
-		local Rows = {
-			{ N = 11; A0 = -92; A1 = 18; Len = 270; Wid = 24; Fill = RGB(255, 250, 236); };
-			{ N = 9; A0 = -86; A1 = 14; Len = 180; Wid = 20; Fill = RGB(255, 244, 214); };
-			{ N = 7; A0 = -80; A1 = 8; Len = 108; Wid = 15; Fill = RGB(255, 236, 186); };
-		};
-		local Rim = RGB(255, 214, 120);
-
-		for RowIndex = #Rows, 1, -1 do -- the small coverts first (behind), the long feathers last (in front)
-			local Row = Rows[RowIndex];
-
-			for Side = 1, -1, -2 do
-				local RX = Side > 0 and W - RootX or RootX;
-
-				for I = 0, Row.N - 1 do
-					local T = I / (Row.N - 1);
-					local Base = Row.A0 + (Row.A1 - Row.A0) * T;
-					local Theta = Side > 0 and Base or 180 - Base;
-					local LenK = Row.Len * S * (0.82 + 0.18 * math.sin(math.pi * math.min(1, T * 0.85 + 0.12)));
-					local Wid = Row.Wid * S;
-					local Pts, Centers, Len = Fit(RX, Theta, LenK, Wid, -Side);
-
-					local X0, Y0, X1, Y1 = math.huge, math.huge, -math.huge, -math.huge;
-					for _, P in ipairs(Pts) do
-						X0, Y0 = math.min(X0, P[1]), math.min(Y0, P[2]);
-						X1, Y1 = math.max(X1, P[1]), math.max(Y1, P[2]);
-					end;
-
-					local Pad = 3;
-					local Pivot = A:Pivot(A.Back, UDim2.new(Side > 0 and 1 or 0, Side > 0 and -RootX or RootX, 0, RootY), Theta);
-					local Piece = A:Canvas(Pivot, {
-						Position = UDim2.fromOffset(X0 - Pad, Y0 - Pad); Size = UDim2.fromOffset(math.ceil(X1 - X0) + Pad * 2, math.ceil(Y1 - Y0) + Pad * 2);
-					}, true);
-
-					-- a chain of ellipses along the centre line: first a gold one slightly bigger (the rim), then the cream one
-					for Pass = 1, 2 do
-						for _, K in ipairs({ 2, 4, 6, 8, 10, 12, 14, 15 }) do
-							local C = Centers[math.min(K, #Centers)];
-							local SegLen = Len / 14 * 2.6 + (Pass == 1 and 3 or 0);
-							local Thick = C[4] * 2 + (Pass == 1 and 3 or 0);
-
-							local Blob = B:New('Frame', {
-								AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Pass == 1 and Rim or Row.Fill;
-								Position = UDim2.fromOffset(C[1] - X0 + Pad, C[2] - Y0 + Pad); Rotation = math.deg(C[3]); Size = UDim2.fromOffset(SegLen, math.max(Thick, 2));
-							}, Piece);
-							Round(Blob, 0.5, 0);
-						end;
-					end;
-
-					local Outer = RowIndex == 1 and I / (Row.N - 1) or 0.4;
-					A:Spring(Pivot, {
-						Side = Side; GX = 1.1; GY = 1; K = 85 - (RowIndex - 1) * 6 - math.abs(0.5 - Outer) * 30; C = 4.2 + (RowIndex - 1) * 0.4;
-						IdleAmp = 1.6 + (1 - (RowIndex - 1) * 0.2); IdleSpeed = 1.1 + (RowIndex - 1) * 0.2; Base = Theta;
-					});
-				end;
+		for _, C in ipairs({ { -1, 3.4, 2.4 }, { 1, -3.4, -2.4 } }) do
+			local Pan = A:Art('ScalePan', Pal, UDim2.new(0.5, C[1] * 0.9 * U, 0, By), U, { Back = true; View = { -0.45, -0.05, 0.9, 0.85 }; });
+			if Pan then
+				local Home = Pan.Position;
+				Pan.Position = Home + UDim2.fromOffset(0, C[2]);
+				Pan.Rotation = C[3];
+				B:Tween(Pan, { Position = Home - UDim2.fromOffset(0, C[2]); Rotation = -C[3]; }, Half, Enum.EasingStyle.Sine, EInOut, 'Decor', -1, true);
 			end;
 		end;
 
-		-- the fairy on the top edge: she swings a little with the window as well and bobs in the air
-		local Pivot, Piece = A:Art('Fairy', { RGB(255, 244, 210), RGB(236, 205, 255), RGB(200, 232, 255), RGB(255, 225, 130) }, UDim2.new(0.5, 0, 0, -40 * S), 56 * S, { Pivot = Vector2.new(0, 0.77); });
-		if Pivot then
-			A:Spring(Pivot, { Side = 1; GX = 0.7; GY = 0.5; K = 40; C = 2.6; Max = 22; IdleAmp = 2.4; IdleSpeed = 1.6; Base = 0; });
-			local P0 = Piece.Position;
-			R:Sway(Piece, { Position = { P0, P0 - UDim2.fromOffset(0, 4) } }, 1.6, 'Decor');
+		-- the crucifix (top left): light pulses behind it, it sways like something hung
+		B:Glow({ Layer = 'Decor'; Color = RGB(255, 236, 170); Size = 70 * S; X = 34 * S / A.Size.X; Y = -34 * S / A.Size.Y; Alpha = 0.9; Rings = 8; Pulse = { 1.05, 0.12 }; });
+		local Cross = A:Art('HolyCross', Pal, UDim2.new(0, 34 * S, 0, -34 * S), 26 * S, { Back = true; View = { -0.7, -1.1, 1.4, 2.2 }; Pivot = Vector2.new(0, 0.95); });
+		if Cross then
+			A:Spring(Cross, { Side = -1; GX = 0.4; GY = 0.5; K = 40; C = 3.4; Max = 6; IdleAmp = 1.2; IdleSpeed = 0.8; });
 		end;
 
-		R:Emitter({
-			Layer = 'Decor'; Shape = 'Diamond'; Count = 12; Size = { 3, 7 }; Static = true; Alpha = { 0.2, 0.7 }; Twinkle = 0.85;
-			Spawn = { X = { -0.02, 1.02 }; Y = { -0.09, -0.01 } }; Colors = { RGB(255, 240, 200) };
-		});
+		-- holy clouds drift slowly: top right, and under the bottom corners
+		for I, C in ipairs({ { UDim2.new(1, -44 * S, 0, -16 * S), 34, 8.2 }, { UDim2.new(0, 48 * S, 1, 12 * S), 40, 9.6 }, { UDim2.new(1, -52 * S, 1, 14 * S), 36, 7.6 } }) do
+			local Cloud = A:Art('HolyCloud', Pal, C[1], C[2] * S, { Back = true; View = { -1.1, -0.6, 2.2, 0.95 }; });
+			if Cloud then
+				local Home = Cloud.Position;
+				Cloud.Position = Home - UDim2.fromOffset(12, 0);
+				B:Tween(Cloud, { Position = Home + UDim2.fromOffset(12, I % 2 == 0 and -4 or 4) }, C[3], Enum.EasingStyle.Sine, EInOut, 'Decor', -1, true, FXRandom:NextNumber() * C[3]);
+			end;
+		end;
 	end;
 });
 
 FX:RegisterScene({
 	Name = 'Cyber'; Category = 'Technology'; Weight = 'Extreme'; Transition = 'Scan'; Pixel = true; PanelAlpha = 0.36;
-	Description = 'A mech in front of a synthwave sun: skyline, neon grid, digital rain, glitch bars, scan line';
+	Description = 'A mech in front of a synthwave sun: skyline, neon grid, digital rain, scan line. No floating decorations';
 	Build = function(R)
 		local Cyan, Magenta = RGB(0, 229, 255), RGB(255, 43, 214);
 
@@ -13787,15 +12827,11 @@ FX:RegisterScene({
 			end;
 		});
 
-		R:Emitter({ Layer = 'Decor'; Shape = 'Circle'; Count = 40; Size = { 1, 3 }; Static = true; Alpha = { 0.25, 0.7 }; Twinkle = 0.85; Colors = { RGB(255, 255, 255), RGB(190, 170, 255), Cyan }; });
-
 		R:Glow({ Layer = 'Atmosphere'; Color = RGB(255, 60, 170); Size = 560; X = 0.5; Y = 0.4; Alpha = 0.945; Rings = 10; Pulse = { 1, 0.05 }; });
 		R:Sun({ X = 0.5; Y = 0.23; Size = 240; Bars = 28; Top = RGB(255, 238, 100); Bottom = RGB(255, 40, 150); });
 		R:Hero(HeroOf('Cyber'));
 		R:Skyline({ Y = 0.4; Color = RGB(10, 2, 30); Edge = Cyan; Lights = { Cyan, Magenta, RGB(255, 230, 90) }; });
 		R:Grid({ Color = Magenta; Horizon = 0.4; Lines = 12; Spread = 0.18; Rows = 12; });
-
-		R:HoloPanels({ Count = 3; Color = Cyan; });
 
 		R:Emitter({ -- digital rain
 			Shape = 'Text'; Count = 14; Size = { 10, 14 }; Vx = { -0.002, 0.002 }; Vy = { 0.16, 0.34 }; Alpha = { 0.2, 0.45 };
@@ -13810,60 +12846,6 @@ FX:RegisterScene({
 		R:Glow({ Color = Magenta; Size = 300; X = 0.85; Y = 0.9; Alpha = 0.955; Pulse = { 0.8, 0.06 }; });
 	end;
 
-	-- neon corner brackets, antenna masts with beacons, a hologram ring
-	Accessory = function(A)
-		local R, S = A.R, A.Scale;
-		local Cyan, Magenta = RGB(0, 229, 255), RGB(255, 43, 214);
-
-		local function Neon(Pos, Anchor, Wd, Ht, Color)
-			local Glow = R:New('Frame', { AnchorPoint = Anchor; BackgroundColor3 = Color; BackgroundTransparency = 0.82; Position = Pos; Size = UDim2.fromOffset(Wd + 8, Ht + 8); }, A.Front);
-			Round(Glow, 0.5, 0);
-			local Line = R:New('Frame', { AnchorPoint = Anchor; BackgroundColor3 = Color; Position = Pos; Size = UDim2.fromOffset(Wd, Ht); }, A.Front);
-			Round(Line, 0.5, 0);
-			R:Sway(Line, { BackgroundTransparency = { 0, 0.45 } }, Roll({ 0.6, 1.2 }), 'Decor');
-			return Line;
-		end;
-
-		-- brackets: the lines sit just OUTSIDE the corners
-		for I, C in ipairs({ { 0, 0 }, { 1, 0 }, { 0, 1 }, { 1, 1 } }) do
-			local Color = I % 2 == 0 and Magenta or Cyan;
-			local Pos = UDim2.new(C[1], C[1] == 0 and -8 or 8, C[2], C[2] == 0 and -8 or 8);
-			Neon(Pos, Vector2.new(C[1], 0.5), 46 * S, 3, Color); -- along the top / bottom edge
-			Neon(Pos, Vector2.new(0.5, C[2]), 3, 46 * S, Color); -- along the left / right edge
-		end;
-		-- antennas with beacons on the top corners
-		for _, Side in ipairs({ 0, 1 }) do
-			local Dx = Side == 0 and 40 or -40;
-			local Mast = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 1); BackgroundColor3 = Cyan; BackgroundTransparency = 0.2; Position = UDim2.new(Side, Dx, 0, 4); Size = UDim2.fromOffset(2, 50 * S); }, A.Front);
-			R:New('UIGradient', { Rotation = 90; Transparency = NS(0, 0.7, 1, 0); }, Mast);
-			R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Cyan; BackgroundTransparency = 0.4; Position = UDim2.new(Side, Dx, 0, -36 * S); Size = UDim2.fromOffset(24, 2); }, A.Front);
-
-			local Color = Side == 0 and Magenta or RGB(0, 255, 170);
-			local Halo = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color; BackgroundTransparency = 0.8; Position = UDim2.new(Side, Dx, 0, -52 * S); Size = UDim2.fromOffset(22, 22); }, A.Front);
-			Round(Halo, 0.5, 0);
-			local Beacon = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color; Position = UDim2.new(Side, Dx, 0, -52 * S); Size = UDim2.fromOffset(10, 10); }, A.Front);
-			Round(Beacon, 0.5, 0);
-			R:Sway(Beacon, { BackgroundTransparency = { 0, 0.85 } }, Side == 0 and 0.35 or 0.45, 'Decor');
-			R:Sway(Halo, { BackgroundTransparency = { 0.7, 0.95 } }, Side == 0 and 0.35 or 0.45, 'Decor');
-		end;
-
-		-- the hologram ring at the right edge: two rings and a few dots circling
-		local Ring = A:Pivot(A.Front, UDim2.new(1, 18 * S, 0.3, 0), 0);
-		local Big = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; Size = UDim2.fromOffset(52 * S, 52 * S); }, Ring);
-		Round(Big, 0.5, 0);
-		local Stroke = Instance.new('UIStroke');
-		Stroke.Color = Cyan; Stroke.Thickness = 2; Stroke.Transparency = 0.2; Stroke.Parent = Big;
-		local Small = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; Size = UDim2.fromOffset(32 * S, 32 * S); }, Ring);
-		Round(Small, 0.5, 0);
-		local Stroke2 = Instance.new('UIStroke');
-		Stroke2.Color = Magenta; Stroke2.Thickness = 1; Stroke2.Transparency = 0.2; Stroke2.Parent = Small;
-		local Dots = A:Pivot(A.Front, UDim2.new(1, 18 * S, 0.3, 0), 0);
-		for I = 0, 5 do
-			local P = EmPoint(26 * S, I * 60);
-			R:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Cyan; Position = UDim2.fromOffset(P[1], P[2]); Size = UDim2.fromOffset(4, 4); }, Dots);
-		end;
-		R:Cycle(Dots, { Rotation = { 0, 360 } }, 6, 'Decor', 0);
-	end;
 });
 
 FX:RegisterScene({
@@ -13944,7 +12926,7 @@ FX:RegisterScene({
 });
 
 FX:RegisterScene({
-	Name = 'Deep Sea'; Category = 'Nature'; Weight = 'Beautiful'; Transition = 'Wheel'; PanelAlpha = 0.3;
+	Name = 'Deep Sea'; Category = 'Nature'; Weight = 'Beautiful'; Transition = 'Ripple'; PanelAlpha = 0.3;
 	Description = 'The abyss: a colossal kraken, glowing jellyfish, an anglerfish lure, marine snow and a passing whale';
 	Build = function(R)
 		R:Gradient({
@@ -14013,88 +12995,6 @@ FX:RegisterScene({
 	end;
 });
 
-FX:RegisterScene({
-	Name = 'God War'; Category = 'Fantasy'; Weight = 'Extreme'; Transition = 'Light'; PanelAlpha = 0.34;
-	Description = 'A god and a demon face to face under a golden storm: lightning, meteors, ruined pillars and a crown of light';
-	Build = function(R)
-		R:Gradient({
-			Layer = 'Base'; Rotation = 90; Drift = 0.1; DriftAmount = 0.08;
-			Colors = Seq(RGB(18, 8, 36), RGB(84, 36, 84), RGB(226, 128, 70), RGB(255, 190, 90));
-		});
-
-		R:Glow({ Layer = 'Atmosphere'; Color = RGB(255, 200, 100); Size = 640; X = 0.5; Y = 0.55; Alpha = 0.93; Rings = 12; Pulse = { 0.7, 0.06 }; });
-		R:Rays({ Count = 8; Color = RGB(255, 214, 120); Width = { 30, 80 }; X = { 0.1, 0.9 }; Sway = 4; Start = 0.7; });
-
-		R:Hero(HeroOf('God'));
-		R:Hero(HeroOf('Demon'));
-
-		R:Pillar({ Layer = 'Decor'; X = 0.08; Y = 0.16; Width = 40; Height = 150; Rotation = -8; Alpha = 0.45; });
-		R:Pillar({ Layer = 'Decor'; X = 0.93; Y = 0.3; Width = 34; Height = 130; Rotation = 9; Alpha = 0.5; });
-		R:Pillar({ Layer = 'Decor'; X = 0.22; Y = 0.7; Width = 28; Height = 100; Rotation = 14; Alpha = 0.6; });
-		R:Curtain({ Layer = 'Atmosphere'; Count = 3; Width = { 100, 190 }; X = { 0.15, 0.85 }; Height = 0.7; Colors = { RGB(255, 190, 90), RGB(255, 120, 70) }; Alpha = 0.84; });
-		R:Smoke({ Layer = 'Atmosphere'; Count = 7; Size = { 150, 230 }; Speed = { 0.014, 0.03 }; Color = RGB(60, 24, 50); Alpha = 0.93; });
-
-		R:Emitter({ -- gold dust
-			Shape = 'Circle'; Count = 40; Size = { 1.5, 3.5 }; Vx = { -0.02, 0.02 }; Vy = { -0.18, -0.05 };
-			Alpha = { 0.5, 0.9 }; Twinkle = 0.5; LifeFade = true; Colors = { RGB(255, 220, 130), RGB(255, 180, 80) };
-		});
-		R:Emitter({ -- golden leaves
-			Shape = 'Petal'; Count = 14; Size = { 5, 10 }; Vx = { -0.01, 0.015 }; Vy = { 0.03, 0.07 }; Spin = { -60, 60 };
-			Flip = { 1.2, 2 }; Alpha = { 0.2, 0.5 }; Colors = { RGB(255, 230, 160), RGB(255, 200, 120) };
-		});
-
-		R:Meteors({ Layer = 'Lighting'; Count = 4; Color = RGB(255, 190, 90); Angle = 32; });
-		R:Lightning({ Layer = 'Lighting'; Color = RGB(255, 214, 120); Period = { 3, 6 }; Reach = 0.65; Flash = 0.28; });
-		R:Vignette({ Layer = 'Atmosphere'; Strength = 0.5; });
-	end;
-
-	-- a gold ring with radiant spikes over the top edge, laurel on the top corners, blades behind the bottom corners
-	Accessory = function(A)
-		local R, B, S = A.R, A.BackR, A.Scale;
-		local Gold = RGB(255, 206, 90);
-
-		local Ring = R:New('Frame', { AnchorPoint = Vector2.new(0.5, 1); BackgroundTransparency = 1; Position = UDim2.new(0.5, 0, 0, 2); Size = UDim2.fromOffset(172 * S, 52 * S); }, A.Front);
-		Round(Ring, 0.5, 0);
-		local Stroke = Instance.new('UIStroke');
-		Stroke.Color = Gold; Stroke.Thickness = 4; Stroke.Transparency = 0.05; Stroke.Parent = Ring;
-		R:Sway(Ring, { Size = { Ring.Size, UDim2.fromOffset(182 * S, 55 * S) } }, 1.8, 'Decor');
-		R:Glow({ Layer = 'Decor'; Color = RGB(255, 190, 70); Size = 170 * S; X = 0.5; Y = -0.05; Alpha = 0.94; Rings = 6; Pulse = { 1, 0.08 }; });
-
-		for I = 0, 10 do -- radiant spikes around the ring
-			local Pivot = A:Pivot(A.Front, UDim2.new(0.5, 0, 0, -26 * S), -80 + I * 16);
-			local Spike = R:New('Frame', {
-				AnchorPoint = Vector2.new(0.5, 1); BackgroundColor3 = RGB(255, 210, 100); Position = UDim2.fromOffset(0, -32 * S); Size = UDim2.fromOffset(6 * S, 38 * S);
-			}, Pivot);
-			R:New('UIGradient', { Rotation = 90; Transparency = NS(0, 1, 1, 0.1); }, Spike);
-			R:Sway(Spike, { BackgroundTransparency = { 0, 0.6 } }, Roll({ 0.8, 1.6 }), 'Decor');
-		end;
-
-		for _, Side in ipairs({ 0, 1 }) do -- laurel on the top corners
-			local Dir = Side == 0 and 1 or -1;
-			for I = 0, 6 do
-				local Rot = Dir * (-60 + I * 18);
-				local Leaf = R:New('Frame', {
-					AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Color3.new(1, 1, 1); Position = UDim2.new(Side, Dir * (4 + I * 5), 0, (-34 + I * 5) * S);
-					Rotation = Rot; Size = UDim2.fromOffset(18 * S, 9 * S);
-				}, A.Front);
-				Round(Leaf, 0.5, 0);
-				R:New('UIGradient', { Rotation = 45; Color = Seq(RGB(255, 243, 176), RGB(255, 194, 71), RGB(168, 98, 10)); }, Leaf);
-				R:Sway(Leaf, { Rotation = { Rot - 6, Rot + 6 } }, Roll({ 2, 3 }), 'Decor');
-			end;
-
-			-- a blade behind each bottom corner
-			local Blade = B:New('Frame', {
-				AnchorPoint = Vector2.new(0.5, 1); BackgroundColor3 = Color3.new(1, 1, 1); Position = UDim2.new(Side, Dir * 18, 1, 40 * S); Rotation = Dir * 16;
-				Size = UDim2.fromOffset(10 * S, 70 * S);
-			}, A.Back);
-			Round(Blade, 0.2, 0);
-			B:New('UIGradient', { Color = Seq(RGB(255, 255, 255), RGB(255, 217, 120), RGB(168, 98, 10)); }, Blade);
-			B:New('Frame', { AnchorPoint = Vector2.new(0.5, 0.5); BackgroundColor3 = Gold; Position = UDim2.new(0.5, 0, 1, -16 * S); Size = UDim2.fromOffset(28 * S, 6 * S); }, Blade);
-			B:Sway(Blade, { BackgroundTransparency = { 0, 0.3 } }, 1.4, 'Decor');
-		end;
-	end;
-});
-
 -- ---------------------------------------------------------------- tab transitions
 -- Each function draws on the overlay layer above the tab area and returns its duration.
 -- Full = false is the lighter variant used by the Balanced profile.
@@ -14102,26 +13002,32 @@ FX.Transitions.Fade = function()
 	return 0;
 end;
 
-FX.Transitions.Wheel = function(Layer, W, H, Full)
-	local Size = math.floor(math.min(W, H) * 0.36);
-	local Wheel = BuildWheel(Layer, Size, RGB(205, 238, 255), 13, 0.05, true);
-	Wheel.Position = UDim2.fromScale(0.5, 0.5);
-	Wheel.Rotation = -100;
-	Library:SetGroupTransparency(Wheel, 1);
+-- water: soft rings spread from the middle and a swell wipes up through the tab
+FX.Transitions.Ripple = function(Layer, W, H, Full)
+	local Size = math.min(W, H);
 
-	local Scale = Library:Create('UIScale', { Scale = 0.55; Parent = Wheel; });
+	for I = 1, 3 do
+		local Ring = Library:Create('Frame', {
+			AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; BorderSizePixel = 0;
+			Position = UDim2.fromScale(0.5, 0.5); Size = UDim2.fromOffset(Size * 0.2, Size * 0.2); ZIndex = 13; Parent = Layer;
+		});
+		Round(Ring, 0.5, 0);
 
-	Library:SetGroupTransparency(Wheel, 0, 0.14);
-	Tw(Scale, { Scale = 1 }, 0.4, Enum.EasingStyle.Back);
-	Tw(Wheel, { Rotation = 170 }, 0.55);
+		local Stroke = Instance.new('UIStroke');
+		Stroke.Color = RGB(205, 238, 255);
+		Stroke.Thickness = 2;
+		Stroke.Transparency = 0.6;
+		Stroke.Parent = Ring;
 
-	task.delay(0.3 * Library.AnimationSpeed, function()
-		if Wheel.Parent then
-			Library:SetGroupTransparency(Wheel, 1, 0.22, Enum.EasingStyle.Quint, Enum.EasingDirection.In);
-		end;
-	end);
+		local Grow = Size * (0.7 + I * 0.3);
+		Tw(Ring, { Size = UDim2.fromOffset(Grow, Grow) }, 0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, I * 0.06);
+		Tw(Stroke, { Transparency = 1 }, 0.45, Enum.EasingStyle.Quad, Enum.EasingDirection.In, 0.1 + I * 0.06);
+		task.delay((0.8 + I * 0.06) * Library.AnimationSpeed, function()
+			Ring:Destroy();
+		end);
+	end;
 
-	if Full then -- water swell wipes up through the tab
+	if Full then
 		local Wave = Library:Create('Frame', {
 			AnchorPoint = Vector2.new(0.5, 0); BackgroundColor3 = RGB(60, 170, 220); BackgroundTransparency = 0.55; BorderSizePixel = 0;
 			Position = UDim2.fromScale(0.5, 1.05); Size = UDim2.fromScale(1.5, 0.9); ZIndex = 12; Parent = Layer;
@@ -14144,30 +13050,6 @@ FX.Transitions.Light = function(Layer, W, H, Full)
 		Round(Ring, 0.5, 0);
 		local Grow = Size * (0.9 + I * 0.28);
 		Tw(Ring, { Size = UDim2.fromOffset(Grow, Grow); BackgroundTransparency = 1; }, 0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, I * 0.025);
-	end;
-
-	if Full then -- a small pair of wings fans out from the center
-		for _, Side in ipairs({ 1, -1 }) do
-			for I = 0, 4 do
-				local Angle = -62 + I * 24;
-				local Pivot = Library:Create('Frame', {
-					AnchorPoint = Vector2.new(0.5, 0.5); BackgroundTransparency = 1; BorderSizePixel = 0;
-					Position = UDim2.fromScale(0.5, 0.5); Size = UDim2.fromOffset(0, 0); ZIndex = 13; Parent = Layer;
-				});
-				Pivot.Rotation = Side == 1 and 80 or 100;
-
-				local Feather = Library:Create('Frame', {
-					AnchorPoint = Vector2.new(0, 0.5); BackgroundColor3 = RGB(255, 246, 215); BackgroundTransparency = 0.15; BorderSizePixel = 0;
-					Position = UDim2.fromOffset(Size * 0.03, 0); Size = UDim2.fromOffset(0, 9); ZIndex = 13; Parent = Pivot;
-				});
-				Round(Feather, 0.5, 0);
-
-				local Length = Size * (0.2 + (4 - math.abs(I - 1.5)) * 0.05);
-				Tw(Pivot, { Rotation = Side == 1 and Angle or (180 - Angle) }, 0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, I * 0.02);
-				Tw(Feather, { Size = UDim2.fromOffset(Length, 9) }, 0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, I * 0.02);
-				Tw(Feather, { BackgroundTransparency = 1 }, 0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In, 0.3);
-			end;
-		end;
 	end;
 
 	return 0.7;
@@ -14806,16 +13688,13 @@ function Library:CreateWindow(...)
 
 	-- where each scene's sparks come from (the same places as the store preview)
 	local AccKicks = {
-		Heaven = function(P, W, H) local C = RGB(255, 244, 210); Accessories:Burst('petal', 10, 120, C, 6, P); Accessories:Burst('petal', W - 10, 120, C, 6, P); Accessories:Burst('spark', W / 2, -40, RGB(255, 225, 130), 7, P); end;
+		Heaven = function(P, W, H) local C = RGB(255, 252, 236); Accessories:Burst('spark', W / 2, -44, RGB(255, 225, 130), 7, P); Accessories:Burst('spark', 34, -40, RGB(255, 236, 170), 5, P); Accessories:Burst('petal', 48, H + 8, C, 5, P); Accessories:Burst('petal', W - 52, H + 10, C, 5, P); end;
 		Inferno = function(P, W, H) for _ = 1, 3 do Accessories:Burst('spark', (0.1 + FXRandom:NextNumber() * 0.8) * W, H + 6, RGB(255, 170, 60), 5, P); end; Accessories:Burst('spark', 0, H, RGB(255, 120, 30), 4, P); Accessories:Burst('spark', W, H, RGB(255, 120, 30), 4, P); end;
 		Ocean = function(P, W, H) local C = RGB(210, 245, 255); Accessories:Burst('bubble', W - 4, H, C, 5, P); Accessories:Burst('bubble', 4, H, C, 4, P); Accessories:Burst('ring', W / 2, -10, RGB(170, 232, 255), 1, P); end;
 		Sakura = function(P, W, H) local C = RGB(255, 185, 210); Accessories:Burst('petal', 16, -40, C, 6, P); Accessories:Burst('petal', W - 16, -40, C, 6, P); Accessories:Burst('spark', W / 2, -30, RGB(255, 236, 170), 5, P); end;
-		Galaxy = function(P, W, H) Accessories:Burst('spark', W - 2, -8, RGB(210, 200, 255), 7, P); Accessories:Burst('spark', 14, 8, RGB(255, 170, 230), 5, P); Accessories:Burst('streak', W / 2, -20, RGB(255, 255, 255), 4, P); end;
 		Void = function(P, W, H) local C = RGB(190, 170, 255); Accessories:Burst('spark', W / 2, -22, RGB(170, 150, 255), 8, P); Accessories:Burst('streak', 0, H * 0.55, C, 3, P); Accessories:Burst('streak', W, H * 0.62, C, 3, P); end;
-		Cyber = function(P, W, H) Accessories:Burst('streak', 40, -50, RGB(0, 229, 255), 5, P); Accessories:Burst('streak', W - 40, -50, RGB(255, 43, 214), 5, P); Accessories:Burst('ring', W + 22, H * 0.3 + 26, RGB(0, 229, 255), 1, P); end;
 		Vanguard = function(P, W, H) local C = RGB(255, 190, 180); Accessories:Burst('spark', -2, -46, RGB(255, 110, 100), 8, P); Accessories:Burst('spark', W + 2, -46, RGB(255, 110, 100), 8, P); Accessories:Burst('streak', 0, H * 0.4, C, 3, P); Accessories:Burst('streak', W, H * 0.4, C, 3, P); end;
 		['Deep Sea'] = function(P, W, H) local C = RGB(175, 255, 240); Accessories:Burst('bubble', 4, H - 60, C, 5, P); Accessories:Burst('bubble', W - 4, H - 60, C, 5, P); Accessories:Burst('spark', W * 0.62, -62, RGB(0, 255, 210), 5, P); end;
-		['God War'] = function(P, W, H) local C = RGB(255, 240, 160); Accessories:Burst('spark', W / 2, -30, RGB(255, 214, 110), 8, P); Accessories:Burst('streak', 0, -10, C, 4, P); Accessories:Burst('streak', W, -10, C, 4, P); end;
 	};
 
 	function Accessories:Kick(Power)
