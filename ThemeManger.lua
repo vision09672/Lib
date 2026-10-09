@@ -23,13 +23,14 @@ do
 		['Void'] 		= { 40, httpService:JSONDecode('{"FontColor":"d8d8e8","MainColor":"101018","AccentColor":"8b7cff","BackgroundColor":"08080d","OutlineColor":"232333"}') },
 		['Ocean'] 		= { 42, httpService:JSONDecode('{"FontColor":"e8f6ff","MainColor":"0f2a3d","AccentColor":"2fb8d6","BackgroundColor":"0a1d2c","OutlineColor":"1c4a63"}') },
 		['Sakura'] 		= { 43, httpService:JSONDecode('{"FontColor":"fff0f5","MainColor":"2a1822","AccentColor":"ff8fb8","BackgroundColor":"1c0f17","OutlineColor":"4f2d41"}') },
-		['Galaxy'] 		= { 44, httpService:JSONDecode('{"FontColor":"f2eaff","MainColor":"151133","AccentColor":"9d7bff","BackgroundColor":"0b0820","OutlineColor":"2f2a63"}') },
 		['Heaven'] 		= { 45, httpService:JSONDecode('{"FontColor":"f4f1ff","MainColor":"16245a","AccentColor":"ffd98a","BackgroundColor":"0e1a46","OutlineColor":"3a4375"}') },
 		['Cyber'] 		= { 46, httpService:JSONDecode('{"FontColor":"e6fbff","MainColor":"0d1424","AccentColor":"00e5ff","BackgroundColor":"070b16","OutlineColor":"1c3350"}') },
 		['Inferno'] 	= { 47, httpService:JSONDecode('{"FontColor":"fff1e6","MainColor":"261210","AccentColor":"ff6a1f","BackgroundColor":"170a08","OutlineColor":"4a2118"}') },
 		['Deep Sea'] 	= { 48, httpService:JSONDecode('{"FontColor":"dff6ff","MainColor":"06192b","AccentColor":"00e0c6","BackgroundColor":"030a14","OutlineColor":"0e3550"}') },
-		['God War'] 	= { 49, httpService:JSONDecode('{"FontColor":"fff4d6","MainColor":"1a1220","AccentColor":"ffc247","BackgroundColor":"0f0a14","OutlineColor":"5a4220"}') },
 	}
+
+	-- themes that were taken out: a saved theme with one of these names (a config, default.txt, a custom theme) falls back instead of breaking
+	ThemeManager.RemovedThemes = { ['Galaxy'] = true, ['God War'] = true }
 
 	-- Scene = animated scene from Library.FX.Scenes that goes with the colors. Weight = Clean / Balanced / Beautiful / Extreme.
 	-- Themes not listed here are plain color themes with no scene.
@@ -38,12 +39,10 @@ do
 		['Void'] 		= { Scene = 'Void', Weight = 'Balanced' };
 		['Ocean'] 		= { Scene = 'Ocean', Weight = 'Balanced' };
 		['Sakura'] 		= { Scene = 'Sakura', Weight = 'Beautiful' };
-		['Galaxy'] 		= { Scene = 'Galaxy', Weight = 'Balanced' };
 		['Heaven'] 		= { Scene = 'Heaven', Weight = 'Beautiful' };
 		['Cyber'] 		= { Scene = 'Cyber', Weight = 'Extreme' };
 		['Inferno'] 	= { Scene = 'Inferno', Weight = 'Extreme' };
 		['Deep Sea'] 	= { Scene = 'Deep Sea', Weight = 'Beautiful' };
-		['God War'] 	= { Scene = 'God War', Weight = 'Extreme' };
 	}
 
 	ThemeManager.VisualModes = {
@@ -67,12 +66,10 @@ do
 		['Void'] 		= 'Near-black · Violet',
 		['Ocean'] 		= 'Navy · Aqua',
 		['Sakura'] 		= 'Plum · Blossom',
-		['Galaxy'] 		= 'Deep space · Lilac',
 		['Heaven'] 		= 'Indigo · Halo gold',
 		['Cyber'] 		= 'Night · Neon cyan',
 		['Inferno'] 	= 'Ember · Lava',
 		['Deep Sea'] 	= 'Abyss · Bioluminescent',
-		['God War'] 	= 'Storm violet · Gold',
 	}
 
 	-- Live preview: paint the whole UI with a theme while hovering its card, without touching the color pickers
@@ -135,6 +132,10 @@ do
 	end
 	
 	function ThemeManager:ApplyTheme(theme)
+		if self.RemovedThemes[theme] then
+			theme = self.BuiltInThemes['Vanguard'] and 'Vanguard' or 'Default'
+		end
+
 		local customThemeData = self:GetCustomTheme(theme)
 		local data = customThemeData or self.BuiltInThemes[theme]
 
@@ -150,6 +151,9 @@ do
 		-- animated scene that goes with this theme (custom themes store theirs under "Scene")
 		local meta = self.ThemeMeta[theme]
 		local sceneName = (customThemeData and customThemeData.Scene) or (meta and meta.Scene)
+		if self.RemovedThemes[sceneName] then
+			sceneName = nil
+		end
 
 
 		-- while Applying is true the color pickers' OnChanged won't re-run ThemeUpdate for every single color
@@ -576,7 +580,7 @@ do
 
 		Visual:AddToggle('FX_Background', { Text = 'Animated Background', Default = true, Tooltip = 'Theme scene behind the window', Callback = function(v) Cfg({ Background = v }) end })
 		Visual:AddToggle('FX_Particles', { Text = 'Particles', Default = true, Tooltip = 'Bubbles, petals, embers, digital rain...', Callback = function(v) Cfg({ Particles = v }) end })
-		Visual:AddToggle('FX_Decorations', { Text = 'Decorations', Default = true, Tooltip = 'Theme objects: wheel, flowers, planet, corners...', Callback = function(v) Cfg({ Decorations = v }) end })
+		Visual:AddToggle('FX_Decorations', { Text = 'Decorations', Default = true, Tooltip = 'Theme objects around the window: flowers, coral, swords, the scale and the crucifix, kraken arms...', Callback = function(v) Cfg({ Decorations = v }) end })
 		Visual:AddToggle('FX_Animations', { Text = 'Theme Animations', Default = true, Tooltip = 'Off = the scene is drawn but nothing moves', Callback = function(v) Cfg({ Animations = v }) end })
 		Visual:AddToggle('FX_Transitions', { Text = 'Tab Transitions', Default = true, Tooltip = 'Short theme animation when you change tab', Callback = function(v) Cfg({ Transitions = v }) end })
 		Visual:AddToggle('FX_Ambient', { Text = 'Ambient Effects', Default = true, Tooltip = 'Glows, light sweeps and scan lines', Callback = function(v) Cfg({ Ambient = v }) end })
